@@ -39,13 +39,13 @@ setInterval(()=>{
     //AJAX For users
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET","php/get-chat.php",true);
+    xhr.open("POST","php/get-chat.php",true);
 
     xhr.onload = ()=>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
                 let data = xhr.response;
-                
+                chatBox.innerHTML = data;
              }
         }
     }
@@ -54,6 +54,5 @@ setInterval(()=>{
 
     xhr.send(formData); //sending the form data to php
 
-xhr.send();
 
 }, 500);  //this function will run frequesntly after 500ms
