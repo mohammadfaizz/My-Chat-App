@@ -8,6 +8,9 @@ form.onsubmit = (e)=>{
     e.preventDefault();  //preventing form from submission
 }
 
+
+
+
 sendBtn.onclick = ()=>{
     let xhr = new XMLHttpRequest();
 
@@ -17,6 +20,7 @@ sendBtn.onclick = ()=>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
                 inputField.value = ""; //once message inserted into database leave it blank
+                scrollToBottom();
         }
 
     }
@@ -32,6 +36,13 @@ sendBtn.onclick = ()=>{
 }
 
 
+chatBox.onmouseenter = ()=>{
+    chatBox.classList.add("active");
+}
+
+chatBox.onmouseleave = ()=>{
+    chatBox.classList.remove("active");
+}
 
 
 setInterval(()=>{
@@ -46,6 +57,9 @@ setInterval(()=>{
             if(xhr.status === 200){
                 let data = xhr.response;
                 chatBox.innerHTML = data;
+                if(!chatBox.classList.contains("active")){//scroll if there is no active class
+                    scrollToBottom();
+                }
              }
         }
     }
@@ -56,3 +70,7 @@ setInterval(()=>{
 
 
 }, 500);  //this function will run frequesntly after 500ms
+
+function scrollToBottom(){
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
