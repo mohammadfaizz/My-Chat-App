@@ -307,8 +307,9 @@ Select *{
 
 /* we'll use this class name in php to show offline status */
 
-.users-list a .status-dot .offline{
-    color: #ccc;
+/* .users-list a .status-dot .offline_v1{ */
+.offline_v1{
+    color: #ccc !important;
 }
 
 

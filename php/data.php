@@ -11,20 +11,18 @@ while($row = mysqli_fetch_assoc($sql)){
           $result = $row2['msg'];
      }else{
           $result = "No Message Avalaible";
-     }
-
+     }    
 
      $you = "";
      
      (strlen($result) > 28) ? $msg = substr($result, 0, 28).'...' : $msg = $result;
 
-     
      if(isset($row2['outgoing_msg_id'])){
           ($row2['outgoing_msg_id'] == $outgoing_id) ? $you = 'You: ' : $you = "";
-          
      }
      
-     ($row['status'] == "Offline Now") ? $offline = "offline" : $offline = "";
+     // echo ($row['status'] == "Offline Now") ? "offline" : "online";
+     ($row['status'] == "Offline Now") ? $offline = "offline_v1" : $offline = "";
 
     $output .= '<a href="chat.php?user_id='.$row['unique_id'].'">
                 <div class="content">
@@ -37,5 +35,6 @@ while($row = mysqli_fetch_assoc($sql)){
                 <div class="status-dot '.$offline.'"><i class="fas fa-circle"></i></div>
                 </a>';
 }
+
 
 ?>
